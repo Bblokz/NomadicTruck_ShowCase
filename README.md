@@ -4,15 +4,17 @@ This repo does not contain any base classes nor derived blueprints or assets.
 The original directory layout has been changed in this repo to find the appropriate files easier.
 
 ### Main show case
-This project shows how my nomadic truck mechanic works which relys on concurrency in several ways.
+This project shows how my nomadic truck mechanic works which relys on parallelism in several ways.
 1. The truck is able to convert into a buidling and back into a truck, for this a procedural animation is made using material slots.
 This happens completely automatically, as I do not want to manually create each animiation I use cpp to calculate the 
 relative offsets from the pivot of the building mesh of each material slot.
 This only happens once in the game and is cached afterwards.
 
 Since my meshes are nanite-based they can be very complex which makes these calculations very expensive.
-To solve this I use concurrency to calculate the offsets in parallel.
+To solve this I use parallelism to calculate the offsets on a different thread.
 When the calculation is complete the results are writen back on the main thread to avoid race conditions.
+In the exceptional case that the background thread does not finish the calculations in time the animation falls back
+to random smoke locations.
 
 2. Memory footprint optimization and improved loading times.
 The expanded trucks can make use of buiding expansion to add extra meshes to their construction.
