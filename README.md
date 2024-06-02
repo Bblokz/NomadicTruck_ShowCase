@@ -22,3 +22,9 @@ From a design perspective, this is very useful as it allows me to create a lot o
 However, this can be very expensive in terms of memory and loading times.
 Hard referenced assets force the CPU to load in every single possible expansion, even if the player will never use them.
 To solve this I use a custom asset manager that loads in the assets only when they are needed, see ARTSAsyncSpawner.
+This spawner makes use of handle which allows for only loading in one assets at the time.
+
+This creates an interesting problem on itsown as now the player does not have direct access to the building meshes.
+We do not want to make the player wait, instead I load a preview mesh which is a highly optimized version of the total
+building mesh in sync with the main thread. This mesh can be placed as a preview which is replace by the actual building
+once the background loading is complete.
