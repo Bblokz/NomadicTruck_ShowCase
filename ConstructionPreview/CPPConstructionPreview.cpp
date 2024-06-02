@@ -76,6 +76,7 @@ bool ACPPConstructionPreview::IsOverlapping() const
 	{
 		RTSFunctionLibrary::PrintString("Number of overlapping actors: " + FString::FromInt(OverlappingActors.Num()),
 		                                FColor::Red);
+		RTSFunctionLibrary::PrintString("name of preview mesh: " + PreviewMesh->GetStaticMesh()->GetName(), FColor::Blue);
 	}
 
 	return OverlappingActors.Num() >= 1;

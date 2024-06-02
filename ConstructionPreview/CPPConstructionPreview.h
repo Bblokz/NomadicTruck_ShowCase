@@ -40,6 +40,7 @@ public:
 	 * @param NewPreviewMesh The mesh that will be displayed.
 	 * @param HostLocation The location of the expanding building that wants to place an expansion.
 	 * @param BuildRadius How far the building can be placed from the host location.
+	 * @note Do not call directly but use the CppController::StartBuildingPreview.
 	 */
 	UFUNCTION(BlueprintCallable)
 	void StartBuildingPreview(
